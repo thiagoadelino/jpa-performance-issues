@@ -12,23 +12,19 @@ import javax.persistence.*;
 @Getter
 @Setter
 
-@Entity
-@Table(name="book")
-public class Book {
+    @Entity
+    @Table(name="book")
+    public class Book {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id_book")
-    private Integer id;
+        @Id
+        @GeneratedValue(strategy = GenerationType.AUTO)
+        @Column(name = "id_book")
+        private Integer id;
 
-    private String name;
+        private String name;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_author", referencedColumnName = "id_author")
-    private Author author;
+        @ManyToOne(fetch = FetchType.LAZY)
+        @JoinColumn(name = "id_author", referencedColumnName = "id_author")
+        private Author author;
 
-
-    public Book(Integer id, String name, Integer authorId, String authorName){
-        this(id, name, new Author(authorId, authorName, null));
     }
-}

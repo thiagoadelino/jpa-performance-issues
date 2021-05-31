@@ -13,18 +13,18 @@ import java.util.List;
 @Getter
 @Setter
 
-@Entity
-@Table(name="author")
-public class Author {
+    @Entity
+    @Table(name="author")
+    public class Author {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id_author")
-    private Integer id;
+        @Id
+        @GeneratedValue(strategy = GenerationType.AUTO)
+        @Column(name = "id_author")
+        private Integer id;
 
-    private String name;
+        private String name;
 
-    @OneToMany(mappedBy = "author")
-    private List<Book> books;
-}
+        @OneToMany(mappedBy = "author", fetch = FetchType.LAZY)
+        private List<Book> books;
+    }
 

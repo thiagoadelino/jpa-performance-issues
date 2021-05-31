@@ -10,7 +10,13 @@ import java.util.List;
 
 public interface BookRepository extends JpaRepository<Book, Integer>, JpaSpecificationExecutor<Book> {
 
+    @Query(value = "SELECT b, a FROM Book b JOIN b.author a ")
+    List<Book> findAllJPQL();
 
-    @Query(value = "SELECT b, a FROM Book b JOIN b.author a WHERE a.id = :authorId ")
-    List<Book> findByAuthorId(@Param("authorId") Integer authorId);
+    @Query(value = "SELECT b, a FROM Book b JOIN b.author a WHERE b.id IN ( :idsBook ) ")
+    List<Book> findByIdsBook(@Param("idsBook") List<Integer> idsBook);
+
+    @Query(value = "SELECT b, a FROM Book b JOIN b.author a WHERE b.id = :idBook ")
+    List<Book> findByIdJPQL(@Param("idBook") Integer idBook);
+
 }
